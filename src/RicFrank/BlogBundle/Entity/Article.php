@@ -3,6 +3,7 @@
 namespace RicFrank\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Article
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+
     /**
      * @var integer
      *
@@ -35,6 +37,29 @@ class Article
      */
     private $body;
 
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=150)
+     */
+    private $slug;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="createdat", type="datetime")
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="modifiedat", type="datetime")
+     */
+    private $modifiedat;
 
     /**
      * Get id
@@ -55,7 +80,7 @@ class Article
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
@@ -78,7 +103,7 @@ class Article
     public function setBody($body)
     {
         $this->body = $body;
-    
+
         return $this;
     }
 
@@ -91,4 +116,35 @@ class Article
     {
         return $this->body;
     }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Get createdat
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedat()
+    {
+        return $this->createdat;
+    }
+
+    /**
+     * Get modifiedat
+     *
+     * @return \DateTime 
+     */
+    public function getModifiedat()
+    {
+        return $this->modifiedat;
+    }
+
 }
