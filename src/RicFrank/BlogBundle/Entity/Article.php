@@ -4,6 +4,7 @@ namespace RicFrank\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use RicFrank\BlogBundle\Entity\Tag;
 
 /**
  * Article
@@ -60,6 +61,18 @@ class Article
      * @ORM\Column(name="modifiedat", type="datetime")
      */
     private $modifiedat;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles")
+     * @ORM\JoinColumn(name="articles_tags")
+     * 
+     * */
+    private $tags;
+
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -145,6 +158,21 @@ class Article
     public function getModifiedat()
     {
         return $this->modifiedat;
+    }
+
+    /**
+     * Set one tag
+     * 
+     * @param \RicFrank\BlogBundle\Entity\Tag $tag
+     */
+    public function addTag(Tag $tag)
+    {
+        $this->tags->add($tag);
+    }
+
+    public function getTags()
+    {
+        return  $this->tags;
     }
 
 }
