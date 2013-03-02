@@ -1,0 +1,5 @@
+ric_frank_blog:
+    resource: "@RicFrankBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
