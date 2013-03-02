@@ -13,7 +13,7 @@ use RicFrank\BlogBundle\Form\ArticleType;
 /**
  * Article controller.
  *
- * @Route("/article")
+ * @Route("/")
  */
 class ArticleController extends Controller
 {
